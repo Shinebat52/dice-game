@@ -1,19 +1,10 @@
-//тоглогчийн ээлжийг хадгалах хувьсагч
-var activePlayer = 0
-//тоглогчийн цуглуулсан оноог хадгалах хувьсагч
-var scores = [0, 0]
-//Тоглогчийн ээлжиндээ цуглуулж байгаа оноог хадгалах хувьсагч
-var roundScore = 0
-//Шооны аль талаараа буусныг хадгалах хувьсагч хэрэгтэй, 1-6 гэсэг тоог энэ хувьсагчид хадгална.
+var activePlayer
+var scores
+var roundScore
 
-document.getElementById('score-0').textContent = '0'
-document.getElementById('score-1').textContent = '0'
-document.getElementById('current-0').textContent = '0'
-document.getElementById('current-1').textContent = '0'
-
+startGame()
 var diceDom = document.querySelector('.dice')
 
-diceDom.style.display = 'none'
 //shoog shideh event listener
 document.querySelector('.btn-hold').addEventListener('click', function () {
   scores[activePlayer] += roundScore
@@ -51,5 +42,23 @@ function ToglogchdiinEeljiigSolino() {
   // else activePlayer = 0
   document.querySelector('.player-0-panel').classList.toggle('active')
   document.querySelector('.player-1-panel').classList.toggle('active')
+  diceDom.style.display = 'none'
+}
+
+document.querySelector('btn-new').addEventListener('click', startGame())
+
+function startGame() {
+  //тоглогчийн ээлжийг хадгалах хувьсагч
+  activePlayer = 0
+  //тоглогчийн цуглуулсан оноог хадгалах хувьсагч
+  scores = [0, 0]
+  //Тоглогчийн ээлжиндээ цуглуулж байгаа оноог хадгалах хувьсагч
+  roundScore = 0
+  //Шооны аль талаараа буусныг хадгалах хувьсагч хэрэгтэй, 1-6 гэсэг тоог энэ хувьсагчид хадгална.
+
+  document.getElementById('score-0').textContent = '0'
+  document.getElementById('score-1').textContent = '0'
+  document.getElementById('current-0').textContent = '0'
+  document.getElementById('current-1').textContent = '0'
   diceDom.style.display = 'none'
 }
