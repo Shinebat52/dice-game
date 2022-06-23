@@ -2,9 +2,9 @@ var activePlayer
 var scores
 var roundScore
 
-startGame()
 var diceDom = document.querySelector('.dice')
 
+startGame()
 //shoog shideh event listener
 document.querySelector('.btn-hold').addEventListener('click', function () {
   scores[activePlayer] += roundScore
@@ -45,10 +45,15 @@ function ToglogchdiinEeljiigSolino() {
   diceDom.style.display = 'none'
 }
 
-document.querySelector('btn-new').addEventListener('click', startGame())
+document.querySelector('.btn-new').addEventListener('click', startGame)
 
 function startGame() {
   //тоглогчийн ээлжийг хадгалах хувьсагч
+  document.getElementById('name-0').textContent = 'Player 1'
+  document.getElementById('name-1').textContent = 'Player 2'
+  document.querySelector('.player-0-panel').classList.remove('winner')
+  document.querySelector('.player-1-panel').classList.remove('winner')
+
   activePlayer = 0
   //тоглогчийн цуглуулсан оноог хадгалах хувьсагч
   scores = [0, 0]
@@ -60,5 +65,11 @@ function startGame() {
   document.getElementById('score-1').textContent = '0'
   document.getElementById('current-0').textContent = '0'
   document.getElementById('current-1').textContent = '0'
+
   diceDom.style.display = 'none'
+
+  document.querySelector('.player-0-panel').classList.remove('active')
+  document.querySelector('.player-1-panel').classList.remove('active')
+
+  document.querySelector('.player-0-panel').classList.add('active')
 }
