@@ -1,36 +1,44 @@
 var activePlayer
 var scores
 var roundScore
-
+var isGameOver
 var diceDom = document.querySelector('.dice')
 
 startGame()
+isGameOver = false
 //shoog shideh event listener
 document.querySelector('.btn-hold').addEventListener('click', function () {
-  scores[activePlayer] += roundScore
-  document.getElementById('score-' + activePlayer).textContent =
-    scores[activePlayer]
-  if (scores[activePlayer] >= 10) {
-    document
-      .querySelector('.player-' + activePlayer + '-panel')
-      .classList.add('winner')
-    document.getElementById('name-' + activePlayer).textContent = 'WINNER!!!'
-    document
-      .querySelector('.player-' + activePlayer + '-panel')
-      .classList.remove('active')
-  } else ToglogchdiinEeljiigSolino()
+  if (isGameOver == false) {
+    scores[activePlayer] += roundScore
+    document.getElementById('score-' + activePlayer).textContent =
+      scores[activePlayer]
+    if (scores[activePlayer] >= 100) {
+      isGameOver = true
+      document
+        .querySelector('.player-' + activePlayer + '-panel')
+        .classList.add('winner')
+      document.getElementById('name-' + activePlayer).textContent = 'WINNER!!!'
+      document
+        .querySelector('.player-' + activePlayer + '-panel')
+        .classList.remove('active')
+    } else ToglogchdiinEeljiigSolino()
+  }
 })
 document.querySelector('.btn-roll').addEventListener('click', function () {
-  //randomoor 1-6 hurtel too gargah
-  var diceNumber = Math.floor(Math.random() * 6) + 1
-  diceDom.style.display = 'block'
-  diceDom.src = 'dice-' + diceNumber + '.png'
-  //alert('Shoo buulaa : ' + diceNumber)
-  if (diceNumber != 1) {
-    roundScore += diceNumber
-    document.getElementById('current-' + activePlayer).textContent = roundScore
-  } else {
-    ToglogchdiinEeljiigSolino()
+  if (isGameOver == false) {
+    //randomoor 1-6 hurtel too gargah
+    var diceNumber = Math.floor(Math.random() * 6) + 1
+    diceDom.style.display = 'block'
+    diceDom.src = 'dice-' + diceNumber + '.png'
+    //alert('Shoo buulaa : ' + diceNumber)
+    if (diceNumber != 1) {
+      roundScore += diceNumber
+      document.getElementById(
+        'current-' + activePlayer,
+      ).textContent = roundScore
+    } else {
+      ToglogchdiinEeljiigSolino()
+    }
   }
 })
 
@@ -49,6 +57,7 @@ document.querySelector('.btn-new').addEventListener('click', startGame)
 
 function startGame() {
   //тоглогчийн ээлжийг хадгалах хувьсагч
+  isGameOver = false
   document.getElementById('name-0').textContent = 'Player 1'
   document.getElementById('name-1').textContent = 'Player 2'
   document.querySelector('.player-0-panel').classList.remove('winner')
